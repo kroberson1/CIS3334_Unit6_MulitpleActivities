@@ -13,8 +13,8 @@ public class SecondActivity extends AppCompatActivity {
 
     TextView textViewData;
     Button buttonReturn;
-    String name;
-    Double num;
+    Double num1;
+    Double num2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,9 +24,9 @@ public class SecondActivity extends AppCompatActivity {
         textViewData = (TextView) findViewById(R.id.textViewData);
 
         Bundle extras = getIntent().getExtras();
-        name = extras.getString("MainName");
-        num = extras.getDouble("MainNumber");
-        textViewData.setText("Name : " + name + " Number : " + num);
+        num1 = extras.getDouble("MainNumber1");
+        num2 = extras.getDouble("MainNumber2");
+        textViewData.setText("Width is : " + num1 + " And the Length is " + num2 + " and the flooring needs to be " + num1 * num2);
         setupReturnButton();
 
     }
@@ -38,8 +38,8 @@ public class SecondActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Log.d("CIS 3334", "Return button clicked");   // log button click for debugging using "CIS 3334" tag
                 Intent intent = new Intent();
-                intent.putExtra("NewName", name+"@css.edu");
-                intent.putExtra("NewNum", num * 2);
+                intent.putExtra("NewName", num1 +"@css.edu");
+                intent.putExtra("NewNum", num2 * 2);
                 setResult(RESULT_OK, intent);
                 finish();
             }

@@ -20,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
 
     EditText editTextName;
     EditText editTextNumber;
-    TextView textViewResult;
+    TextView textView;
     Button button;
 
     // constant to determine which sub-activity returns
@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
 
         editTextName = (EditText) findViewById(R.id.editTextName);
         editTextNumber = (EditText) findViewById(R.id.editTextNumber);
-        textViewResult = (TextView) findViewById(R.id.textViewResult);
+        textView = (TextView) findViewById(R.id.textView);
         setupButton();
 
         // Initialize the ActivityResultLauncher
@@ -49,27 +49,25 @@ public class MainActivity extends AppCompatActivity {
                         if (data != null) {
                             String newNameString = data.getStringExtra("NewName");
                             Log.d("CIS 3334", "NewName = "+newNameString);   // log button click for debugging using "CIS 3334" tag
-                            textViewResult.setText(newNameString);
+                            textView.setText(newNameString);
                         }
                     }
                 }
         );
     }
-
+// editTextName IS THE WIDTH
     private void setupButton() {
         button = findViewById(R.id.button);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // Call the second activity
-                String name = editTextName.getText().toString();
-                Double num = Double.parseDouble( editTextNumber.getText().toString() );
+                Double num1 = Double.parseDouble( editTextName.getText().toString() );
+                Double num2 = Double.parseDouble( editTextNumber.getText().toString() );
                 Intent secActIntent = new Intent(MainActivity.this, SecondActivity.class);
-                secActIntent.putExtra("MainName", name);
-                secActIntent.putExtra("MainNumber", num);
-                //startActivity(secActIntent);     // if no result is returned
-                //startActivityForResult(secActIntent, CIS3334_REQUEST_CODE);
-                launcher.launch(secActIntent);
+                secActIntent.putExtra("MainNumber1", num1);
+                secActIntent.putExtra("MainNumber2", num2);
+                startActivity(secActIntent);
             }
         });
     }
